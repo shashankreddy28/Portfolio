@@ -1,3 +1,136 @@
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('portfolio.json')
+        .then(response => response.json())
+        .then(data => {
+            // Populate Hero Section
+            document.querySelector('.nav-logo a').textContent = data.name;
+            document.querySelector('.hero-title').textContent = data.hero.title;
+            document.querySelector('.hero-subtitle').textContent = data.hero.subtitle;
+            document.querySelector('.hero-description').textContent = data.hero.description;
+            document.querySelector('.btn-primary').textContent = data.hero.primaryAction;
+            document.querySelector('.btn-secondary').textContent = data.hero.secondaryAction;
+
+            // Populate About Section
+            document.querySelector('#about .section-title').textContent = data.about.title;
+            const aboutText = document.querySelector('.about-text');
+            aboutText.innerHTML = `
+                <p>${data.about.description1}</p>
+                <p>${data.about.description2}</p>
+                <p>${data.about.description3}</p>
+                <div class="about-stats">
+                    ${data.about.stats.map(stat => `
+                        <div class="stat">
+                            <h3>${stat.value}</h3>
+                            <p>${stat.label}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Populate Experience Section
+            document.querySelector('#experience .section-title').textContent = data.experience.title;
+            const timeline = document.querySelector('.timeline');
+            const sortedJobs = data.experience.jobs.sort((a, b) => {
+                const aEndDate = a.endDate === 'Present' ? new Date() : new Date(a.endDate);
+                const bEndDate = b.endDate === 'Present' ? new Date() : new Date(b.endDate);
+                if (aEndDate < bEndDate) return 1;
+                if (aEndDate > bEndDate) return -1;
+                const aStartDate = new Date(a.startDate);
+                const bStartDate = new Date(b.startDate);
+                if (aStartDate < bStartDate) return 1;
+                if (aStartDate > bStartDate) return -1;
+                return 0;
+            });
+            timeline.innerHTML = sortedJobs.map(job => {
+                const startDate = new Date(job.startDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                const endDate = job.endDate === 'Present' ? 'Present' : new Date(job.endDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                return `
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">${startDate} - ${endDate}</div>
+                            <h3>${job.title}</h3>
+                            <h4>${job.company}</h4>
+                            <p>${job.description}</p>
+                            <div class="timeline-tech">
+                                ${job.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Populate Projects Section
+            document.querySelector('#projects .section-title').textContent = data.projects.title;
+            const projectsGrid = document.querySelector('.projects-grid');
+            projectsGrid.innerHTML = data.projects.projects.map(project => `
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="${project.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-tech">
+                            ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            <a href="${project.codeUrl}" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Populate Skills Section
+            document.querySelector('#skills .section-title').textContent = data.skills.title;
+            const skillsGrid = document.querySelector('.skills-grid');
+            skillsGrid.innerHTML = data.skills.categories.map(category => `
+                <div class="skill-category">
+                    <h3>${category.name}</h3>
+                    <div class="skill-items">
+                        ${category.skills.map(skill => `
+                            <div class="skill-item">
+                                <span class="skill-name">${skill.name}</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: ${skill.progress}"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Populate Contact Section
+            document.querySelector('#contact .section-title').textContent = data.contact.title;
+            document.querySelector('.contact-info h3').textContent = data.contact.subtitle;
+            document.querySelector('.contact-info p').textContent = data.contact.description;
+            const contactDetails = document.querySelector('.contact-details');
+            contactDetails.innerHTML = `
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>${data.contact.email}</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>${data.contact.phone}</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${data.contact.address}</span>
+                </div>
+            `;
+            const socialLinks = document.querySelector('.social-links');
+            socialLinks.innerHTML = data.contact.social.map(link => `
+                <a href="${link.url}" class="social-link"><i class="fab fa-${link.platform}"></i></a>
+            `).join('');
+
+            // Populate Footer
+            document.querySelector('.footer p').innerHTML = data.footer.copyright;
+        });
+});
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -27,7 +160,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
+//Navbar background change on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -83,42 +216,43 @@ skillBars.forEach(bar => {
 });
 
 // Contact form handling
-const contactForm = document.querySelector('.contact-form');
+const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
         const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        // Simulate form submission
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
+
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
-        // Simulate API call
-        setTimeout(() => {
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            this.reset();
+
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                this.reset();
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        showNotification(data["errors"].map(error => error["message"]).join(", "), 'error');
+                    } else {
+                        showNotification('Oops! There was a problem submitting your form', 'error');
+                    }
+                })
+            }
+        }).catch(error => {
+            showNotification('Oops! There was a problem submitting your form', 'error');
+        }).finally(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+        });
     });
 }
 
@@ -186,32 +320,6 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Typing effect for hero title
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
-        }, 1000);
-    }
-});
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {
@@ -367,4 +475,4 @@ document.querySelectorAll('.timeline-item').forEach(item => {
     item.addEventListener('mouseleave', function() {
         this.style.transform = 'scale(1)';
     });
-}); 
+});

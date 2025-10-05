@@ -1,0 +1,148 @@
+{
+    "name": "Shashank Reddy Srinivasa Reddy",
+    "hero": {
+      "title": "Hi, I'm Shashank",
+      "subtitle": "CS Student | Aspiring ML/DL Engineer | Full-Stack Developer | Sports | Gym",
+      "description": "I’m a Computer Science student at Minnesota State, focusing on machine learning, data analysis, and full-stack development. I enjoy building projects that solve real problems and exploring new technologies. I also enjoy playing sports and working out.",
+      "primaryAction": "View My Work",
+      "secondaryAction": "Get In Touch"
+    },
+    "about": {
+      "title": "About Me",
+      "description1": "I’m Shashank Reddy, a Computer Science student at Minnesota State. My interests span machine learning, data analysis, and full-stack development, where I focus on building solutions that are both practical and impactful.",
+      "description2": "I have worked on projects ranging from predictive customer analytics and windows application development to workflow automation tools, gaining experience in applying theory to real problems. Alongside technical work, I value clear communication and collaboration, whether through mentoring, assisting peers, or presenting insights to non-technical audiences.",
+      "description3": "Outside academics, I stay active at the gym and enjoy exploring side projects that help me learn emerging technologies.",
+      "stats": [
+        { "value": "3+", "label": "Years Experience" },
+        { "value": "10+", "label": "Projects Completed" },
+        { "value": "4+", "label": "Leadership Positions" }
+      ]
+    },
+    "experience": {
+      "title": "Work Experience",
+      "jobs": [
+        {
+          "startDate": "2025-08",
+          "endDate": "Present",
+          "title": "Project Lead/AI Developer",
+          "company": "University Of Minnesota (Industry Sponsored Project)",
+          "description": "Led project planning, team coordination, and stakeholder communication to align technical progress with research goals. Designed and developed deep learning models (YOLOv8, Python, PyTorch) for vascular bundle detection in plant stem cross-sections, implementing reproducible workflows using GitHub Actions, Anaconda, and Jupyter, enhancing model accuracy and research efficiency.",
+          "tech": ["Python", "YOLOv8", "GitHub Actions" ,"PyTorch"]
+        },
+        {
+          "startDate": "2025-08",
+          "endDate": "Present",
+          "title": "Student Website Manager",
+          "company": "Minnesota State Univeristy Mankato (Center of Excellence in Engineering)",
+          "description": "Managed WordPress website for the Center of Engineering and Excellence, optimizing performance through plugins, enhancing UI for intuitive user experience, and analyzing user data to improve site functionality and engagement.",
+          "tech": ["JavaScript","HTML/CSS", "WordPress", "Python"]
+        },
+        {
+          "startDate": "2025-01",
+          "endDate": "2025-05",
+          "title": "Data Analyst",
+          "company": "Intuilize Inc. (Industry Sponsored Project)",
+          "description": "Engineered customer-level features from 1.2M+ transactional records using Python (Pandas, NumPy, scikit-learn, Matplotlib) to create a predictive dataset capturing revenue, profitability, and purchasing trends. Developed clustering models (Silhouette Score: 0.83) and a hybrid time series-Markov Chain model, achieving 90% accuracy in predicting customer movement.",
+          "tech": ["Python", "Pandas", "Scikit-learn", "Matplotlib"]
+        },
+        {
+          "startDate": "2024-08",
+          "endDate": "2024-12",
+          "title": "Software Engineer",
+          "company": "Taylor Corp (Industry Sponsored Project)",
+          "description": "Optimized back-end performance of the Northstar application, cutting costs by $22,000 and boosting execution speed by 25%. Collaborated with clients to debug and resolve UI issues in a WinForms (.NET C#) Windows application, enhancing event handling logic to double responsiveness and improve overall performance of event-driven components.",
+          "tech": ["C#", ".NET", "WinForms" ,"SQL"]
+        },
+        {
+          "startDate": "2023-08",
+          "endDate": "Present",
+          "title": "Teaching Assistant",
+          "company": "Minnesota State University Mankato (Computer Science Department)",
+          "description": "Assisted professors in teaching programming courses. Delivered personalized tutoring in Python, Data Structures, Algorithms, and Computer Architecture, tailoring explanations to diverse learning styles to enhance student understanding. Leveraged VS Code for code demos, Zoom for remote sessions, and LeetCode for algorithm practice, while managing scheduling and resources via email to ensure clear communication.",
+          "tech": ["Java", "Python", "Algorithms"]
+        },
+        {
+          "startDate": "2023-03",
+          "endDate": "Present",
+          "title": "Front Desk Lead",
+          "company": "Minnesota State University Mankato (International Student Services)",
+          "description": "Streamlined scheduling workflows using Microsoft Forms and Excel, reducing manual effort and boosting efficiency. Engaged with diverse international students, enhancing cultural sensitivity and organizational skills through effective communication and time management in a dynamic environment.",
+          "tech": ["Excel", "Microsoft Forms"]
+        }
+      ]
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "projects": [
+        {
+          "icon": "fas fa-mobile-alt",
+          "title": "Senti-Bot",
+          "description": "Built a scalable Discord bot using FinBERT and NLP, integrated with Finnhub and Discord APIs for real-time financial sentiment analysis, leveraging shell scripting, cron automation, DevOps practices (virtual environments, .env), and Git for robust deployment.",
+          "tech": ["Git", "Finnhub API", "NLP", "FinnBERT"],
+          "codeUrl": "https://github.com/shashankreddy28/senti-bot"
+        },
+        {
+          "icon": "fas fa-chart-line",
+          "title": "CharScan",
+          "description": "Developed a CNN in TensorFlow for accurate real-time classification of handwritten mathematical symbols, with a modular ML pipeline for data preparation, model training, and CLI-based user interaction.",
+          "tech": ["OpenCV", "Python", "TensorFlow"],
+          "demoUrl": "#",
+          "codeUrl": "https://github.com/shashankreddy28/math_bud"
+        },{
+          "icon": "fas fa-chart-line",
+          "title": "Wordle-Buddy",
+          "description": "Built a Chrome extension for Wordle with advanced Shadow DOM traversal for reliable game data import across platforms, enhancing robustness and user experience through a re-architected communication pipeline and programmatic content script injection.",
+          "tech": ["JavaScript", "Shadow DOM", "HTML/CSS"],
+          "demoUrl": "#",
+          "codeUrl": "https://github.com/shashankreddy28/wordle-solver"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skills & Technologies",
+      "categories": [
+        {
+          "name": "WebDev",
+          "skills": [
+            { "name": "HTML/CSS", "progress": "90%" },
+            { "name": "NodeJS", "progress": "90%" },
+            { "name": "JavaScript", "progress": "85%" },
+            { "name": "MongoDB", "progress": "80%" }
+          ]
+        },
+        {
+          "name": "Data Science & ML",
+          "skills": [
+            { "name": "Python", "progress": "90%" },
+            { "name": "Pandas", "progress": "85%" },
+            { "name": "Scikit-learn", "progress": "80%" },
+            { "name": "TensorFlow", "progress": "75%" }
+          ]
+        },
+        {
+          "name": "Tools & Others",
+          "skills": [
+            { "name": "Git", "progress": "90%" },
+            { "name": "Docker", "progress": "70%" },
+            { "name": "AWS", "progress": "55%" },
+            { "name": "Figma", "progress": "50%" }
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "subtitle": "Let's work together",
+      "description": "I'm always interested in hearing about new opportunities. Feel free to reach out!",
+      "email": "shashankreddy.srinivasareddy@mnsu.edu",
+      "phone": "+1 (612) 946-2542",
+      "address": "Lakeville, MN",
+      "social": [
+        { "platform": "github", "url": "https://github.com/shashankreddy28" },
+        { "platform": "linkedin", "url": "https://www.linkedin.com/in/shashankreddy28/" }
+      ]
+    },
+    "footer": {
+      "copyright": "&copy; 2025 Shashank Reddy."
+    }
+  }
